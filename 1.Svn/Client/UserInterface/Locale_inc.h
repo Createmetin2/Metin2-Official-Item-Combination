@@ -1,0 +1,1 @@
+#define __BL_MOVE_COSTUME_ATTR__

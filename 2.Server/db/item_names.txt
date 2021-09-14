@@ -1,0 +1,4 @@
+70063	Transform Costume
+70064	Enchant Costume
+70065	Costume Bonus Transfer
+70070	Shoulder Sash Transfer

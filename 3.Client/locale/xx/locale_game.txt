@@ -1,0 +1,9 @@
+COMB_NOT_ALL_SLOT_APPEND_ITEM	You require a source and target item plus the transfer item to transfer bonuses.
+COMB_WILL_REMOVE_MATERIAL	The source item will be destroyed on success.
+COMB_IS_CONTINUE_PROCESS	Do you want to continue?
+COMB_CANT_APPEND_ITEM	This item cannot be used.
+COMB_NOT_ITEM_IN_INVENTORY	You cannot use equipped items.
+COMB_CANT_APPEND_SEALED_ITEM	You cannot use any soulbound items.
+COMB_NOT_MEDIUM_ITEM	This item cannot be used.
+COMB_CANT_APPEND_ITEM	This item cannot be used.
+COMB_ALREADY_APPEND	This item has already been selected.
