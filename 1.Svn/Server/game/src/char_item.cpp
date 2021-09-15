@@ -125,9 +125,12 @@
 #if defined(__BL_MOVE_COSTUME_ATTR__)
 void CHARACTER::OpenItemComb()
 {
-	if (IsItemComb())
+	if (IsItemComb() || GetMailBox() || GetExchange() || IsOpenSafebox() || GetShopOwner() || GetMyShop() || IsCubeOpen())
+	{
+		ChatPacket(CHAT_TYPE_INFO, "You have to close other windows.");
 		return;
-
+	}
+	
 	const LPCHARACTER npc = GetQuestNPC();
 	if (npc == NULL)
 	{
