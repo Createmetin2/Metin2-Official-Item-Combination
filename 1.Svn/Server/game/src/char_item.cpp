@@ -173,6 +173,9 @@ void CHARACTER::ItemCombination(const short MediumIndex, const short BaseIndex, 
 
 	if (BaseItem->GetType() != EItemTypes::ITEM_COSTUME || MaterialItem->GetType() != EItemTypes::ITEM_COSTUME)
 		return;
+	
+	if (BaseItem->GetSubType() != MaterialItem->GetSubType())
+		return;
 
 	if (BaseItem->GetAttributeCount() < 1 || MaterialItem->GetAttributeCount() < 1)
 		return;

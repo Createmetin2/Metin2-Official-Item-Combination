@@ -83,6 +83,9 @@ PyObject* playerCanAttachToCombItemSlot(PyObject* poSelf, PyObject* poArgs)
 	if (CItemManager::Instance().GetItemDataPointer(pItem->vnum, &pItemData) == false)
 		return Py_BuildValue("b", false);
 
+	if (pItemData->GetType() != CItemData::EItemType::ITEM_TYPE_COSTUME)
+		return Py_BuildValue("b", false);
+
 	bool bHasAttr = false;
 	for (BYTE i = 0; i < ITEM_ATTRIBUTE_SLOT_MAX_NUM; i++)
 	{
@@ -93,9 +96,28 @@ PyObject* playerCanAttachToCombItemSlot(PyObject* poSelf, PyObject* poArgs)
 		}
 	}
 
-	const bool bRet = pItemData->GetType() == CItemData::EItemType::ITEM_TYPE_COSTUME && bHasAttr;
+	if (bHasAttr == false)
+		return Py_BuildValue("b", false);
 
-	return Py_BuildValue("b", bRet);
+	for (BYTE i : { ECombSlotType::COMB_WND_SLOT_BASE, ECombSlotType::COMB_WND_SLOT_MATERIAL })
+	{
+		const short sOtherItemIndex = CPythonPlayer::Instance().GetInvenSlotAttachedToConbWindowSlot(i);
+		if (sOtherItemIndex == -1)
+			continue;
+
+		const TItemData* pOtherItem = CPythonPlayer::Instance().GetItemData(TItemPos(INVENTORY, sOtherItemIndex));
+		if (pOtherItem == nullptr)
+			continue;
+
+		CItemData* pOtherItemData = nullptr;
+		if (CItemManager::Instance().GetItemDataPointer(pOtherItem->vnum, &pOtherItemData) == false)
+			continue;
+
+		if (pOtherItemData->GetSubType() != pItemData->GetSubType())
+			return Py_BuildValue("b", false);
+	}
+
+	return Py_BuildValue("b", true);
 }
 
 PyObject* playerGetConbWindowSlotByAttachedInvenSlot(PyObject* poSelf, PyObject* poArgs)
