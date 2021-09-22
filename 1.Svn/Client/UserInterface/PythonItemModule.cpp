@@ -1,5 +1,5 @@
 ///Add
-#if defined(__BL_MOVE_COSTUME_ATTR__)
+#if defined(__BL_MOVE_COSTUME_ATTR__) || defined(__BL_TRANSMUTATION__)
 PyObject* itemGetItemNameByVnum(PyObject* poSelf, PyObject* poArgs)
 {
 	DWORD dwVirtualNumber;
@@ -18,7 +18,7 @@ PyObject* itemGetItemNameByVnum(PyObject* poSelf, PyObject* poArgs)
 		{ "Pick",							itemPick,								METH_VARARGS },
 
 ///Add
-#if defined(__BL_MOVE_COSTUME_ATTR__)
+#if defined(__BL_MOVE_COSTUME_ATTR__) || defined(__BL_TRANSMUTATION__)
 		{ "GetItemNameByVnum",				itemGetItemNameByVnum,					METH_VARARGS },
 #endif
 
